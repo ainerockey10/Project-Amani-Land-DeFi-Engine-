@@ -1,0 +1,28 @@
+{
+  "name": "Project Amani - Soroban Dev Environment",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+    "ghcr.io/devcontainers/features/rust:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/common-utils:2": {},
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "postCreateCommand": "cargo install stellar-cli --locked && cargo install --locked soroban-cli && echo 'Soroban toolchain ready'",
+  "postStartCommand": "cargo install stellar-cli --locked --force || true",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rust-lang.rust-analyzer",
+        "tamasfe.even-better-toml",
+        "serayuzgur.crates"
+      ],
+      "settings": {
+        "rust-analyzer.checkOnSave.command": "clippy"
+      }
+    }
+  },
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspaces/Project-Amani-Land-DeFi-Engine-,type=bind,consistency=cached"
+  ]
+}
